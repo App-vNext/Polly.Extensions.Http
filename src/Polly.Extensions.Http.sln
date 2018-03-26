@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{79FE9DBE-1155-4F78-A41F-FE95DEFA19DD}"
+	ProjectSection(SolutionItems) = preProject
+		GlobalAssemblyInfo.cs = GlobalAssemblyInfo.cs
+		Polly.Extensions.Http.nuspec = Polly.Extensions.Http.nuspec
+	EndProjectSection
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Polly.Extensions.Http.Shared", "Polly.Extensions.Http.Shared\Polly.Extensions.Http.Shared.shproj", "{23FA87F9-C77D-4C67-A0B0-2901DE51B3FF}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Polly.Extensions.Http.SharedSpecs", "Polly.Extensions.Http.SharedSpecs\Polly.Extensions.Http.SharedSpecs.shproj", "{8D537C37-A4A2-4BE1-84BC-34F1AFB51CA8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polly.Extensions.Http.NetStandard11", "Polly.Extensions.Http.NetStandard11\Polly.Extensions.Http.NetStandard11.csproj", "{5017174E-DAC5-4408-AB15-1F902F40C612}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polly.Extensions.Http.NetStandard11.Specs", "Polly.Extensions.Http.NetStandard11.Specs\Polly.Extensions.Http.NetStandard11.Specs.csproj", "{615C92EC-5921-40F4-A690-C66B1587C08E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polly.Extensions.Http.NetStandard11-Signed", "Polly.Extensions.Http.NetStandard11-Signed\Polly.Extensions.Http.NetStandard11-Signed.csproj", "{1CFC0F44-E534-4F9F-B916-F408244356B4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polly.Extensions.Http.NetStandard11-Signed.Specs", "Polly.Extensions.Http.NetStandard11-Signed.Specs\Polly.Extensions.Http.NetStandard11-Signed.Specs.csproj", "{A69B39A4-158C-41C0-9144-E49503FE7A8D}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Polly.Extensions.Http.Shared\Polly.Extensions.Http.Shared.projitems*{23fa87f9-c77d-4c67-a0b0-2901de51b3ff}*SharedItemsImports = 13
+		Polly.Extensions.Http.Shared\Polly.Extensions.Http.Shared.projitems*{5017174e-dac5-4408-ab15-1f902f40c612}*SharedItemsImports = 4
+		Polly.Extensions.Http.SharedSpecs\Polly.Extensions.Http.SharedSpecs.projitems*{8d537c37-a4a2-4be1-84bc-34f1afb51ca8}*SharedItemsImports = 13
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5017174E-DAC5-4408-AB15-1F902F40C612}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5017174E-DAC5-4408-AB15-1F902F40C612}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5017174E-DAC5-4408-AB15-1F902F40C612}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5017174E-DAC5-4408-AB15-1F902F40C612}.Release|Any CPU.Build.0 = Release|Any CPU
+		{615C92EC-5921-40F4-A690-C66B1587C08E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{615C92EC-5921-40F4-A690-C66B1587C08E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{615C92EC-5921-40F4-A690-C66B1587C08E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{615C92EC-5921-40F4-A690-C66B1587C08E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CFC0F44-E534-4F9F-B916-F408244356B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CFC0F44-E534-4F9F-B916-F408244356B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CFC0F44-E534-4F9F-B916-F408244356B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CFC0F44-E534-4F9F-B916-F408244356B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A69B39A4-158C-41C0-9144-E49503FE7A8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A69B39A4-158C-41C0-9144-E49503FE7A8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A69B39A4-158C-41C0-9144-E49503FE7A8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A69B39A4-158C-41C0-9144-E49503FE7A8D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9835020C-E016-4B79-803E-123903872153}
+	EndGlobalSection
+EndGlobal
