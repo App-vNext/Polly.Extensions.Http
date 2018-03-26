@@ -35,7 +35,7 @@ using Polly.Extensions.Http;
 // Handles HttpRequestException, Http status codes >= 500 (server errors) and status code 408 (request timeout)
 var policy = HttpPolicyExtensions
   .HandleTransientHttpError()
-  .WaitAndRetryAsync(3); // A very simple retry-3-times. See https://github.com/App-vNext/Polly for the many richer Policy configuration options available.
+  .RetryAsync(3); // A very simple retry-3-times. See https://github.com/App-vNext/Polly for the many richer Policy configuration options available.
 ```
 
 The pre-defined set of conditions to handle can be freely extended using Polly's usual Handle and Or clauses:
@@ -45,13 +45,13 @@ The pre-defined set of conditions to handle can be freely extended using Polly's
 var policy = HttpPolicyExtensions
   .HandleTransientHttpError()
   .OrResult(response => (int)response.StatusCode == 429) // RetryAfter
-  .WaitAndRetryAsync(3);
+  .RetryAsync(3);
 
 // Pre-canned http fault handling plus extra exceptions
 var policy = HttpPolicyExtensions
   .HandleTransientHttpError()
   .Or<TimeoutRejectedException>() // TimeoutRejectedException from Polly's TimeoutPolicy
-  .WaitAndRetryAsync(3);
+  .RetryAsync(3);
 ```
 
 Related overloads in Polly's 'Or' syntax are also provided:
@@ -62,14 +62,14 @@ Related overloads in Polly's 'Or' syntax are also provided:
 var policy = Policy
   .Handle<SomeException>()
   .OrTransientHttpError()
-  .WaitAndRetryAsync(3);
+  .RetryAsync(3);
 
 // Handles SomeException, Http status codes >= 500 (server errors) and status code 408 (request timeout)
 // ('or' syntax after your own custom 'handle' clause)
 var policy = Policy
   .Handle<SomeException>()
   .OrTransientHttpStatusCode()
-  .WaitAndRetryAsync(3);
+  .RetryAsync(3);
 ```
 
 # Using Polly.Extensions.Http with HttpClientFactory
@@ -80,7 +80,7 @@ Polly.Extensions.Http is ideal for creating custom Polly policies for use with [
 var retryPolicy = HttpPolicyExtensions
   .HandleTransientHttpError()
   .Or<TimeoutRejectedException>() // thrown by Polly's TimeoutPolicy on timeout
-  .WaitAndRetryAsync(3);
+  .RetryAsync(3);
 
 var timeoutPolicy = Policy.TimeoutAsync(10);  
 
