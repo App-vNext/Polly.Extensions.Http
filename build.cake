@@ -301,8 +301,8 @@ Task("Build")
     .IsDependentOn("__RunTests")
     .IsDependentOn("__CopyNonSignedOutputToNugetFolder")
     .IsDependentOn("__CreateNonSignedNugetPackage")
-    .IsDependentOn("__StronglySignAssemblies")
     .IsDependentOn("__CopySignedOutputToNugetFolder")
+    .IsDependentOn("__StronglySignAssemblies")
     .IsDependentOn("__CreateSignedNugetPackage");
 
 ///////////////////////////////////////////////////////////////////////////////
