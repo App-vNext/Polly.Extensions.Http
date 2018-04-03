@@ -1,3 +1,5 @@
+## 1.0.1-preview2
+- Fix signing of DLLs in strong-name package
 
 ## 1.0.0-preview2
 
