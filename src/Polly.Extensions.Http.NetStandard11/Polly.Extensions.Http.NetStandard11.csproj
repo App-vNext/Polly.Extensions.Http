@@ -28,7 +28,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Polly" Version="5.8.0" />
+    <PackageReference Include="Polly" Version="5.9.0" />
   </ItemGroup>
   <Import Project="..\Polly.Extensions.Http.Shared\Polly.Extensions.Http.Shared.projitems" Label="Shared" />
 </Project>

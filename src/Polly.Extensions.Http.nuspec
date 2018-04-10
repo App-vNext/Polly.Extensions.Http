@@ -13,6 +13,11 @@
     <tags>HttpClient Exception Handling Resilience Transient Fault Policy</tags>
     <copyright>Copyright © 2018, App vNext</copyright>
     <releaseNotes>
+     1.0.2-rc1
+     ---------------------
+     - Reference Polly v5.9.0
+     - Update xUnit and FluentAssertions dependencies
+
      1.0.1-preview2
      ---------------------
      - Fix signing of DLLs in strong-name package
@@ -27,7 +32,7 @@
    </releaseNotes>
     <dependencies>
       <group targetFramework="netstandard1.1">
-        <dependency id="Polly" version="5.8.0" />
+        <dependency id="Polly" version="5.9.0" />
         <dependency id="NETStandard.Library" version="1.6.1" />
       </group>
     </dependencies>

@@ -1,3 +1,7 @@
+## 1.0.2-rc1
+- Reference Polly v5.9.0
+- Update xUnit and FluentAssertions dependencies
+
 ## 1.0.1-preview2
 - Fix signing of DLLs in strong-name package
 
