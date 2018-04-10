@@ -44,7 +44,7 @@ The pre-defined set of conditions to handle can be freely extended using Polly's
 // Pre-canned http fault handling plus extra http status codes
 var policy = HttpPolicyExtensions
   .HandleTransientHttpError()
-  .OrResult(response => (int)response.StatusCode == 429) // RetryAfter
+  .OrResult(response => (int)response.StatusCode == someStatusCode) 
   .RetryAsync(3);
 
 // Pre-canned http fault handling plus extra exceptions
@@ -82,7 +82,7 @@ var retryPolicy = HttpPolicyExtensions
   .Or<TimeoutRejectedException>() // thrown by Polly's TimeoutPolicy on timeout
   .RetryAsync(3);
 
-var timeoutPolicy = Policy.TimeoutAsync(10);  
+var timeoutPolicy = Policy.TimeoutAsync<HttpResponseMessage>(10);  
 
 serviceCollection.AddHttpClient("example.com", c => c.BaseAddress = new Uri("http://example.com"))
   .AddPolicyHandler(retryPolicy)
