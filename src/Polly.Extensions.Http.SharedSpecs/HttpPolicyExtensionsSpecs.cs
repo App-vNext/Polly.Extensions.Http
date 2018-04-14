@@ -83,6 +83,7 @@ namespace Polly.Extensions.Http.Specs
 
             policyHandled.Should().BeFalse();
         }
+
         private class CustomException : Exception { }
 
         [Fact]
@@ -156,11 +157,88 @@ namespace Polly.Extensions.Http.Specs
             policyHandled.Should().BeFalse();
         }
 
+        [Fact]
+        public void Should_be_able_to_reference_OrTransientHttpError_onGenericPolicyBuilder()
+        {
+            Policy<HttpResponseMessage>.Handle<CustomException>().OrTransientHttpError()
+                .Should().BeOfType<PolicyBuilder<HttpResponseMessage>>();
+        }
+
+        [Fact]
+        public void OrTransientHttpError_onGenericPolicyBuilder_should_handle_HttpRequestException()
+        {
+            bool policyHandled = false;
+            FallbackPolicy<HttpResponseMessage> policy = Policy<HttpResponseMessage>.Handle<CustomException>().OrTransientHttpError()
+                .FallbackAsync(token =>
+                {
+                    policyHandled = true;
+                    return Task.FromResult<HttpResponseMessage>(null);
+                });
+
+            policy.ExecuteAsync(() => throw new HttpRequestException());
+
+            policyHandled.Should().BeTrue();
+        }
+
+        [Fact]
+        public void OrTransientHttpError_onGenericPolicyBuilder_should_handle_HttpStatusCode_RequestTimeout()
+        {
+            bool policyHandled = false;
+            FallbackPolicy<HttpResponseMessage> policy = Policy<HttpResponseMessage>.Handle<CustomException>().OrTransientHttpError()
+                .FallbackAsync(token =>
+                {
+                    policyHandled = true;
+                    return Task.FromResult<HttpResponseMessage>(null);
+                });
+
+            policy.ExecuteAsync(() => Task.FromResult(new HttpResponseMessage(HttpStatusCode.RequestTimeout)));
+
+            policyHandled.Should().BeTrue();
+        }
+
+        [Fact]
+        public void OrTransientHttpError_onGenericPolicyBuilder_should_handle_HttpStatusCode_InternalServerError()
+        {
+            bool policyHandled = false;
+            FallbackPolicy<HttpResponseMessage> policy = Policy<HttpResponseMessage>.Handle<CustomException>().OrTransientHttpError()
+                .FallbackAsync(token =>
+                {
+                    policyHandled = true;
+                    return Task.FromResult<HttpResponseMessage>(null);
+                });
+
+            policy.ExecuteAsync(() => Task.FromResult(new HttpResponseMessage(HttpStatusCode.InternalServerError)));
+
+            policyHandled.Should().BeTrue();
+        }
+
+        [Fact]
+        public void OrTransientHttpError_onGenericPolicyBuilder_should_not_handle_HttpStatusCode_BadRequest()
+        {
+            bool policyHandled = false;
+            FallbackPolicy<HttpResponseMessage> policy = Policy<HttpResponseMessage>.Handle<CustomException>().OrTransientHttpError()
+                .FallbackAsync(token =>
+                {
+                    policyHandled = true;
+                    return Task.FromResult<HttpResponseMessage>(null);
+                });
+
+            policy.ExecuteAsync(() => Task.FromResult(new HttpResponseMessage(HttpStatusCode.BadRequest)));
+
+            policyHandled.Should().BeFalse();
+        }
 
         [Fact]
         public void Should_be_able_to_reference_OrTransientHttpStatusCode()
         {
             Policy.Handle<CustomException>().OrTransientHttpStatusCode()
+                .Should().BeOfType<PolicyBuilder<HttpResponseMessage>>();
+        }
+
+        [Fact]
+        public void Should_be_able_to_reference_OrTransientHttpStatusCode_onGenericPolicyBuilder()
+        {
+            Policy<HttpResponseMessage>.Handle<CustomException>().OrTransientHttpStatusCode()
                 .Should().BeOfType<PolicyBuilder<HttpResponseMessage>>();
         }
 
