@@ -1,3 +1,6 @@
+## 1.0.3
+- RTM version
+
 ## 1.0.2-rc1
 - Reference Polly v5.9.0
 - Update xUnit and FluentAssertions dependencies
