@@ -74,12 +74,12 @@ var policy = Policy
 
 # Using Polly.Extensions.Http with HttpClientFactory
 
-Polly.Extensions.Http is ideal for creating custom Polly policies for use with [HttpClientFactory](https://blogs.msdn.microsoft.com/webdev/2018/02/28/asp-net-core-2-1-preview1-introducing-httpclient-factory/), available from ASP.NET Core 2.1.
+Polly.Extensions.Http is ideal for creating custom Polly policies for use with HttpClientFactory ([preview1 blog post](https://blogs.msdn.microsoft.com/webdev/2018/02/28/asp-net-core-2-1-preview1-introducing-httpclient-factory/); [preview2 blog post](https://blogs.msdn.microsoft.com/webdev/2018/04/12/asp-net-core-2-1-0-preview2-now-available/)), available from ASP.NET Core 2.1.
 
 ```csharp
 var retryPolicy = HttpPolicyExtensions
   .HandleTransientHttpError()
-  .Or<TimeoutRejectedException>() // thrown by Polly's TimeoutPolicy on timeout
+  .Or<TimeoutRejectedException>() // thrown by Polly's TimeoutPolicy if the inner execution times out
   .RetryAsync(3);
 
 var timeoutPolicy = Policy.TimeoutAsync<HttpResponseMessage>(10);  
@@ -89,11 +89,11 @@ serviceCollection.AddHttpClient("example.com", c => c.BaseAddress = new Uri("htt
   .AddPolicyHandler(timeoutPolicy);
 ```
 
-#### TODO: link to public HttpClientFactory documentation and/or expand example, when ready.
+#### TODO: link to public HttpClientFactory documentation and/or expand example, when that documentation is published.
 
 # For more information on Polly
 
-For more information on Polly and configuring Polly policies see the [main Polly repository](https://github.com/App-vNext/Polly).
+For more information on Polly and configuring Polly policies see the [main Polly repository](https://github.com/App-vNext/Polly) and [wiki](https://github.com/App-vNext/Polly/wiki).
 
 # Release notes
 
