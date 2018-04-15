@@ -43,8 +43,7 @@ var nuspecFolder = "nuget-package";
 var nuspecSrcFile = srcDir + File(projectName + nuspecExtension);
 var nuspecDestFile = buildDir + File(projectName + nuspecExtension);
 var nuspecSignedDestFile = buildDir + File(projectName + signed + nuspecExtension);
-var nupkgUnsignedDestDir = artifactsDir + Directory(nuspecFolder);
-var nupkgSignedDestDir = artifactsDir + Directory(nuspecFolder + signed);
+var nupkgDestDir = artifactsDir + Directory(nuspecFolder);
 var snkFile = srcDir + File(keyName);
 
 var projectToNugetFolderMap = new Dictionary<string, string[]>() {
@@ -247,7 +246,7 @@ Task("__CreateNonSignedNugetPackage")
         Id = packageName,
         Title = packageName,
         Version = nugetVersion,
-        OutputDirectory = nupkgUnsignedDestDir
+        OutputDirectory = nupkgDestDir
     };
 
     NuGetPack(nuspecDestFile, nuGetPackSettings);
@@ -265,7 +264,7 @@ Task("__CreateSignedNugetPackage")
         Id = packageName,
         Title = packageName,
         Version = nugetVersion,
-        OutputDirectory = nupkgSignedDestDir
+        OutputDirectory = nupkgDestDir
     };
 
     NuGetPack(nuspecSignedDestFile, nuGetPackSettings);
