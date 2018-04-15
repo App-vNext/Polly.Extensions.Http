@@ -89,8 +89,7 @@ Task("__Clean")
     DirectoryPath[] cleanDirectories = new DirectoryPath[] {
         buildDir,
         testResultsDir,
-        nupkgUnsignedDestDir,
-        nupkgSignedDestDir,
+        nupkgDestDir,
         artifactsDir
   	};
 
