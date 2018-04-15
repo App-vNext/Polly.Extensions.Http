@@ -9,7 +9,7 @@ Polly.Extensions.Http targets .NET Standard 1.1.
 [<img align="right" src="https://github.com/dotnet/swag/raw/master/logo/dotnetfoundation_v4_small.png" width="100" />](https://www.dotnetfoundation.org/)
 Polly is a member of the [.NET Foundation](https://www.dotnetfoundation.org/about)!
 
-#### TODO: link Nuget package and AppVeyor build here when ready
+[![NuGet version](https://badge.fury.io/nu/Polly.Extensions.Http.svg)](https://badge.fury.io/nu/Polly.Extensions.Http) [![Build status](https://ci.appveyor.com/api/projects/status/hrkj98y8jpahnvy4?svg=true)](https://ci.appveyor.com/project/joelhulen/polly-extensions-http) [![Slack Status](http://www.pollytalk.org/badge.svg)](http://www.pollytalk.org)
 
 ![](https://raw.github.com/App-vNext/Polly/master/Polly-Logo.png)
 
