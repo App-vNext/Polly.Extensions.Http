@@ -1,3 +1,6 @@
+## 2.0.0-v2alpha
+- Publish as strong-named package only (discontinue non-strong-named versions)
+
 ## 1.0.3
 - RTM version
 
