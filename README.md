@@ -2,7 +2,7 @@
 
 Polly.Extensions.Http is an extensions package containing opinionated convenience methods for configuring [Polly](https://github.com/App-vNext/Polly) policies to handle transient faults typical of calls through HttpClient.
 
-Polly.Extensions.Http targets .NET Standard 1.1.
+Polly.Extensions.Http targets .NET Standard 1.1 and .NET Standard 2.0.
 
 [Polly](https://github.com/App-vNext/Polly) is a .NET resilience and transient-fault-handling library that allows developers to express policies such as Retry, Circuit Breaker, Timeout, Bulkhead Isolation, and Fallback in a fluent and thread-safe manner.  
 
@@ -17,11 +17,7 @@ Polly is a member of the [.NET Foundation](https://www.dotnetfoundation.org/abou
 
     Install-Package Polly.Extensions.Http
 
-You can install the Strongly Named version via: 
-
-    Install-Package Polly.Extensions.Http-Signed
-
-The strongly-named version works with the strongly-named Polly-Signed nuget package.
+This package contains a strongly-named DLL.  
 
 # Convenience methods for transient faults of HttpClient calls
 
@@ -72,9 +68,9 @@ var policy = Policy
   .RetryAsync(3);
 ```
 
-# Using Polly.Extensions.Http with HttpClientFactory
+# Using Polly.Extensions.Http with IHttpClientFactory
 
-Polly.Extensions.Http is ideal for creating custom Polly policies for use with HttpClientFactory ([preview1 blog post](https://blogs.msdn.microsoft.com/webdev/2018/02/28/asp-net-core-2-1-preview1-introducing-httpclient-factory/); [preview2 blog post](https://blogs.msdn.microsoft.com/webdev/2018/04/12/asp-net-core-2-1-0-preview2-now-available/)), available from ASP.NET Core 2.1.
+Polly.Extensions.Http is ideal for creating custom Polly policies for use with IHttpClientFactory, available from ASP.NET Core 2.1.
 
 ```csharp
 var retryPolicy = HttpPolicyExtensions
@@ -89,11 +85,14 @@ serviceCollection.AddHttpClient("example.com", c => c.BaseAddress = new Uri("htt
   .AddPolicyHandler(timeoutPolicy);
 ```
 
-#### TODO: link to public HttpClientFactory documentation and/or expand example, when that documentation is published.
+## Official documentation
 
-# For more information on Polly
++ [Microsoft documentation on IHttpClientFactory](https://docs.microsoft.com/en-gb/aspnet/core/fundamentals/http-requests?view=aspnetcore-2.1)
++ [Microsoft documentation on using Polly policies with IHttpClientFactory](https://docs.microsoft.com/en-gb/aspnet/core/fundamentals/http-requests?view=aspnetcore-2.1#use-polly-based-handlers)
++ [Polly documentation on Polly and HttpClientFactory](https://github.com/App-vNext/Polly/wiki/Polly-and-HttpClientFactory)
++ [Main Polly readme](https://github.com/App-vNext/Polly): quickstart details of all Polly policies and features
++ [Polly wiki](https://github.com/App-vNext/Polly/wiki): deep doco on Polly features
 
-For more information on Polly and configuring Polly policies see the [main Polly repository](https://github.com/App-vNext/Polly) and [wiki](https://github.com/App-vNext/Polly/wiki).
 
 # Release notes
 
