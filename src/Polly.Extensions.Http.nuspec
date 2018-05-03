@@ -36,7 +36,7 @@
    </releaseNotes>
     <dependencies>
       <group targetFramework="netstandard1.1">
-        <dependency id="Polly" version="5.9.0" />
+        <dependency id="Polly" version="6.0.0-v6alpha0001" />
         <dependency id="NETStandard.Library" version="1.6.1" />
       </group>
     </dependencies>

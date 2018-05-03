@@ -38,17 +38,14 @@ var testResultsDir = artifactsDir + Directory("test-results");
 
 // NuGet
 var nuspecExtension = ".nuspec";
-var signed = "-Signed";
 var nuspecFolder = "nuget-package";
 var nuspecSrcFile = srcDir + File(projectName + nuspecExtension);
 var nuspecDestFile = buildDir + File(projectName + nuspecExtension);
-var nuspecSignedDestFile = buildDir + File(projectName + signed + nuspecExtension);
 var nupkgDestDir = artifactsDir + Directory(nuspecFolder);
 var snkFile = srcDir + File(keyName);
 
 var projectToNugetFolderMap = new Dictionary<string, string[]>() {
     { "NetStandard11", new [] {"netstandard1.1"} },
-    { "NetStandard11-Signed", new [] {"netstandard1.1"} },
 };
 
 // Gitversion
@@ -189,12 +186,12 @@ Task("__RunTests")
     }
 });
 
-Task("__CopyNonSignedOutputToNugetFolder")
+
+Task("__CopyOutputToNugetFolder")
     .Does(() =>
 {
-    foreach(var project in projectToNugetFolderMap.Keys
-        .Where(p => !p.Contains(signed))
-    ) {
+    foreach(var project in projectToNugetFolderMap.Keys)
+    {
         var sourceDir = srcDir + Directory(projectName + "." + project) + Directory("bin") + Directory(configuration);
 
         foreach(var targetFolder in projectToNugetFolderMap[project]) {
@@ -208,32 +205,7 @@ Task("__CopyNonSignedOutputToNugetFolder")
     CopyFile(nuspecSrcFile, nuspecDestFile);
 });
 
-Task("__CopySignedOutputToNugetFolder")
-    .Does(() =>
-{
-    foreach(var project in projectToNugetFolderMap.Keys
-        .Where(p => p.Contains(signed))
-    ) {
-        var sourceDir = srcDir + Directory(projectName + "." + project) + Directory("bin") + Directory(configuration);
-
-        foreach(var targetFolder in projectToNugetFolderMap[project]) {
-            var destDir = buildDir + Directory("lib");
-
-            Information("Copying {0} -> {1}.", sourceDir, destDir);
-            CopyDirectory(sourceDir, destDir);
-       }
-    }
-
-    CopyFile(nuspecSrcFile, nuspecSignedDestFile);
-    
-    var replacedFiles = ReplaceTextInFiles(nuspecSignedDestFile, "dependency id=\"Polly\"", "dependency id=\"Polly-Signed\"");
-    if (!replacedFiles.Any())
-    {
-        throw new Exception("Could not set Polly dependency to Polly-Signed, for -Signed nuget package.");
-    }
-});
-
-Task("__CreateNonSignedNugetPackage")
+Task("__CreateSignedNugetPackage")
     .Does(() =>
 {
     var nugetVersion = gitVersionOutput["NuGetVersion"].ToString();
@@ -249,24 +221,6 @@ Task("__CreateNonSignedNugetPackage")
     };
 
     NuGetPack(nuspecDestFile, nuGetPackSettings);
-});
-
-Task("__CreateSignedNugetPackage")
-    .Does(() =>
-{
-    var nugetVersion = gitVersionOutput["NuGetVersion"].ToString();
-    var packageName = projectName + "-Signed";
-
-    Information("Building {0}.{1}.nupkg", packageName, nugetVersion);
-
-    var nuGetPackSettings = new NuGetPackSettings {
-        Id = packageName,
-        Title = packageName,
-        Version = nugetVersion,
-        OutputDirectory = nupkgDestDir
-    };
-
-    NuGetPack(nuspecSignedDestFile, nuGetPackSettings);
 });
 
 Task("__StronglySignAssemblies")
@@ -297,9 +251,7 @@ Task("Build")
     .IsDependentOn("__UpdateAppVeyorBuildNumber")
     .IsDependentOn("__BuildSolutions")
     .IsDependentOn("__RunTests")
-    .IsDependentOn("__CopyNonSignedOutputToNugetFolder")
-    .IsDependentOn("__CreateNonSignedNugetPackage")
-    .IsDependentOn("__CopySignedOutputToNugetFolder")
+    .IsDependentOn("__CopyOutputToNugetFolder")
     .IsDependentOn("__StronglySignAssemblies")
     .IsDependentOn("__CreateSignedNugetPackage");
 
