@@ -2,7 +2,7 @@
 
 Polly.Extensions.Http is an extensions package containing opinionated convenience methods for configuring [Polly](https://github.com/App-vNext/Polly) policies to handle transient faults typical of calls through HttpClient.
 
-Polly.Extensions.Http targets .NET Standard 1.1.
+Polly.Extensions.Http targets .NET Standard 1.1 and .NET Standard 2.0.
 
 [Polly](https://github.com/App-vNext/Polly) is a .NET resilience and transient-fault-handling library that allows developers to express policies such as Retry, Circuit Breaker, Timeout, Bulkhead Isolation, and Fallback in a fluent and thread-safe manner.  
 

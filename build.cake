@@ -46,6 +46,7 @@ var snkFile = srcDir + File(keyName);
 
 var projectToNugetFolderMap = new Dictionary<string, string[]>() {
     { "NetStandard11", new [] {"netstandard1.1"} },
+    { "NetStandard20", new [] {"netstandard2.0"} },
 };
 
 // Gitversion
