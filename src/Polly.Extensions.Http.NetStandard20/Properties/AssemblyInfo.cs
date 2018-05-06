@@ -8,4 +8,4 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyVersion("2.0.0.0")]
 [assembly: CLSCompliant(true)]
 
-[assembly: InternalsVisibleTo("Polly.Extensions.Http.NetStandard11.Specs")]
+[assembly: InternalsVisibleTo("Polly.Extensions.Http.NetStandard20.Specs")]

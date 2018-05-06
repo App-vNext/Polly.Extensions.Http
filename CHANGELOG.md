@@ -1,3 +1,10 @@
+## 2.0.1
+- Version 2 RTM, for integration to ASPNET Core 2.1 IHttpClientFactory
+
+## 2.0.0-v2alpha
+- Publish as strong-named package only (discontinue non-strong-named versions)
+- Add .NetStandard 2.0 target
+
 ## 1.0.3
 - RTM version
 

@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <AssemblyName>Polly.Extensions.Http</AssemblyName>
     <AssemblyOriginatorKeyFile></AssemblyOriginatorKeyFile>
@@ -6,9 +6,8 @@
     <DefaultLanguage>en-US</DefaultLanguage>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <RootNamespace>PolicyExtensions</RootNamespace>
-    <TargetFramework>netstandard1.1</TargetFramework>
-    <NetStandardImplicitPackageVersion>1.6.1</NetStandardImplicitPackageVersion>
+    <RootNamespace>Polly.Extensions.Http</RootNamespace>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -28,7 +27,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Polly-Signed" Version="5.9.0" />
+    <PackageReference Include="Polly" Version="6.0.1" />
   </ItemGroup>
   <Import Project="..\Polly.Extensions.Http.Shared\Polly.Extensions.Http.Shared.projitems" Label="Shared" />
 </Project>
