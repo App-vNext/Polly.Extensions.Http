@@ -1,3 +1,8 @@
+## 3.0.0
+- Version compatible with ASPNET Core 3.0 and Polly v7.1.0
+- Add SourceLink support
+- Rationalise solution layout
+
 ## 2.0.1
 - Version 2 RTM, for integration to ASPNET Core 2.1 IHttpClientFactory
 

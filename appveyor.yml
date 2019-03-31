@@ -9,6 +9,7 @@ test: off
 
 artifacts:
   - path: artifacts\nuget-package\*.nupkg
+  - path: artifacts\nuget-package\*.snupkg
 
 environment:
   # Skip dotnet package caching on build servers
