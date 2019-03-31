@@ -3,9 +3,6 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using FluentAssertions;
-using Polly;
-using Polly.Extensions.Http;
-using Polly.Fallback;
 using Xunit;
 
 
@@ -24,7 +21,7 @@ namespace Polly.Extensions.Http.Specs
         public void HandleTransientHttpError_should_handle_HttpRequestException()
         {
             bool policyHandled = false;
-            FallbackPolicy<HttpResponseMessage> policy = HttpPolicyExtensions.HandleTransientHttpError()
+            IAsyncPolicy<HttpResponseMessage> policy = HttpPolicyExtensions.HandleTransientHttpError()
                 .FallbackAsync(token =>
                 {
                     policyHandled = true;
@@ -40,7 +37,7 @@ namespace Polly.Extensions.Http.Specs
         public void HandleTransientHttpError_should_handle_HttpStatusCode_RequestTimeout()
         {
             bool policyHandled = false;
-            FallbackPolicy<HttpResponseMessage> policy = HttpPolicyExtensions.HandleTransientHttpError()
+            IAsyncPolicy<HttpResponseMessage> policy = HttpPolicyExtensions.HandleTransientHttpError()
                 .FallbackAsync(token =>
                 {
                     policyHandled = true;
@@ -56,7 +53,7 @@ namespace Polly.Extensions.Http.Specs
         public void HandleTransientHttpError_should_handle_HttpStatusCode_InternalServerError()
         {
             bool policyHandled = false;
-            FallbackPolicy<HttpResponseMessage> policy = HttpPolicyExtensions.HandleTransientHttpError()
+            IAsyncPolicy<HttpResponseMessage> policy = HttpPolicyExtensions.HandleTransientHttpError()
                 .FallbackAsync(token =>
                 {
                     policyHandled = true;
@@ -72,7 +69,7 @@ namespace Polly.Extensions.Http.Specs
         public void HandleTransientHttpError_should_not_handle_HttpStatusCode_BadRequest()
         {
             bool policyHandled = false;
-            FallbackPolicy<HttpResponseMessage> policy = HttpPolicyExtensions.HandleTransientHttpError()
+            IAsyncPolicy<HttpResponseMessage> policy = HttpPolicyExtensions.HandleTransientHttpError()
                 .FallbackAsync(token =>
                 {
                     policyHandled = true;
@@ -97,7 +94,7 @@ namespace Polly.Extensions.Http.Specs
         public void OrTransientHttpError_should_handle_HttpRequestException()
         {
             bool policyHandled = false;
-            FallbackPolicy<HttpResponseMessage> policy = Policy.Handle<CustomException>().OrTransientHttpError()
+            IAsyncPolicy<HttpResponseMessage> policy = Policy.Handle<CustomException>().OrTransientHttpError()
                 .FallbackAsync(token =>
                 {
                     policyHandled = true;
@@ -113,7 +110,7 @@ namespace Polly.Extensions.Http.Specs
         public void OrTransientHttpError_should_handle_HttpStatusCode_RequestTimeout()
         {
             bool policyHandled = false;
-            FallbackPolicy<HttpResponseMessage> policy = Policy.Handle<CustomException>().OrTransientHttpError()
+            IAsyncPolicy<HttpResponseMessage> policy = Policy.Handle<CustomException>().OrTransientHttpError()
                 .FallbackAsync(token =>
                 {
                     policyHandled = true;
@@ -129,7 +126,7 @@ namespace Polly.Extensions.Http.Specs
         public void OrTransientHttpError_should_handle_HttpStatusCode_InternalServerError()
         {
             bool policyHandled = false;
-            FallbackPolicy<HttpResponseMessage> policy = Policy.Handle<CustomException>().OrTransientHttpError()
+            IAsyncPolicy<HttpResponseMessage> policy = Policy.Handle<CustomException>().OrTransientHttpError()
                 .FallbackAsync(token =>
                 {
                     policyHandled = true;
@@ -145,7 +142,7 @@ namespace Polly.Extensions.Http.Specs
         public void OrTransientHttpError_should_not_handle_HttpStatusCode_BadRequest()
         {
             bool policyHandled = false;
-            FallbackPolicy<HttpResponseMessage> policy = Policy.Handle<CustomException>().OrTransientHttpError()
+            IAsyncPolicy<HttpResponseMessage> policy = Policy.Handle<CustomException>().OrTransientHttpError()
                 .FallbackAsync(token =>
                 {
                     policyHandled = true;
@@ -168,7 +165,7 @@ namespace Polly.Extensions.Http.Specs
         public void OrTransientHttpError_onGenericPolicyBuilder_should_handle_HttpRequestException()
         {
             bool policyHandled = false;
-            FallbackPolicy<HttpResponseMessage> policy = Policy<HttpResponseMessage>.Handle<CustomException>().OrTransientHttpError()
+            IAsyncPolicy<HttpResponseMessage> policy = Policy<HttpResponseMessage>.Handle<CustomException>().OrTransientHttpError()
                 .FallbackAsync(token =>
                 {
                     policyHandled = true;
@@ -184,7 +181,7 @@ namespace Polly.Extensions.Http.Specs
         public void OrTransientHttpError_onGenericPolicyBuilder_should_handle_HttpStatusCode_RequestTimeout()
         {
             bool policyHandled = false;
-            FallbackPolicy<HttpResponseMessage> policy = Policy<HttpResponseMessage>.Handle<CustomException>().OrTransientHttpError()
+            IAsyncPolicy<HttpResponseMessage> policy = Policy<HttpResponseMessage>.Handle<CustomException>().OrTransientHttpError()
                 .FallbackAsync(token =>
                 {
                     policyHandled = true;
@@ -200,7 +197,7 @@ namespace Polly.Extensions.Http.Specs
         public void OrTransientHttpError_onGenericPolicyBuilder_should_handle_HttpStatusCode_InternalServerError()
         {
             bool policyHandled = false;
-            FallbackPolicy<HttpResponseMessage> policy = Policy<HttpResponseMessage>.Handle<CustomException>().OrTransientHttpError()
+            IAsyncPolicy<HttpResponseMessage> policy = Policy<HttpResponseMessage>.Handle<CustomException>().OrTransientHttpError()
                 .FallbackAsync(token =>
                 {
                     policyHandled = true;
@@ -216,7 +213,7 @@ namespace Polly.Extensions.Http.Specs
         public void OrTransientHttpError_onGenericPolicyBuilder_should_not_handle_HttpStatusCode_BadRequest()
         {
             bool policyHandled = false;
-            FallbackPolicy<HttpResponseMessage> policy = Policy<HttpResponseMessage>.Handle<CustomException>().OrTransientHttpError()
+            IAsyncPolicy<HttpResponseMessage> policy = Policy<HttpResponseMessage>.Handle<CustomException>().OrTransientHttpError()
                 .FallbackAsync(token =>
                 {
                     policyHandled = true;
@@ -246,7 +243,7 @@ namespace Polly.Extensions.Http.Specs
         public void OrTransientHttpStatusCode_should_not_handle_HttpRequestException()
         {
             bool policyHandled = false;
-            FallbackPolicy<HttpResponseMessage> policy = Policy.Handle<CustomException>().OrTransientHttpStatusCode()
+            IAsyncPolicy<HttpResponseMessage> policy = Policy.Handle<CustomException>().OrTransientHttpStatusCode()
                 .FallbackAsync(token =>
                 {
                     policyHandled = true;
@@ -262,7 +259,7 @@ namespace Polly.Extensions.Http.Specs
         public void OrTransientHttpStatusCode_should_handle_HttpStatusCode_RequestTimeout()
         {
             bool policyHandled = false;
-            FallbackPolicy<HttpResponseMessage> policy = Policy.Handle<CustomException>().OrTransientHttpStatusCode()
+            IAsyncPolicy<HttpResponseMessage> policy = Policy.Handle<CustomException>().OrTransientHttpStatusCode()
                 .FallbackAsync(token =>
                 {
                     policyHandled = true;
@@ -278,7 +275,7 @@ namespace Polly.Extensions.Http.Specs
         public void OrTransientHttpStatusCode_should_handle_HttpStatusCode_InternalServerError()
         {
             bool policyHandled = false;
-            FallbackPolicy<HttpResponseMessage> policy = Policy.Handle<CustomException>().OrTransientHttpStatusCode()
+            IAsyncPolicy<HttpResponseMessage> policy = Policy.Handle<CustomException>().OrTransientHttpStatusCode()
                 .FallbackAsync(token =>
                 {
                     policyHandled = true;
@@ -294,7 +291,7 @@ namespace Polly.Extensions.Http.Specs
         public void OrTransientHttpStatusCode_should_not_handle_HttpStatusCode_BadRequest()
         {
             bool policyHandled = false;
-            FallbackPolicy<HttpResponseMessage> policy = Policy.Handle<CustomException>().OrTransientHttpStatusCode()
+            IAsyncPolicy<HttpResponseMessage> policy = Policy.Handle<CustomException>().OrTransientHttpStatusCode()
                 .FallbackAsync(token =>
                 {
                     policyHandled = true;
