@@ -11,7 +11,7 @@ namespace Polly.Extensions.Http
     {
         private static readonly Func<HttpResponseMessage, bool> TransientHttpStatusCodePredicate = (response) =>
         {
-            return (int)response.StatusCode >= 500 || response.StatusCode == HttpStatusCode.RequestTimeout;
+            return (int)response.StatusCode > 500 || response.StatusCode == HttpStatusCode.RequestTimeout;
         };
 
         /// <summary>
