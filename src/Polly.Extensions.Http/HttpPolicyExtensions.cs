@@ -27,7 +27,10 @@ namespace Polly.Extensions.Http
         /// <returns>The <see cref="PolicyBuilder{HttpResponseMessage}"/> pre-configured to handle <see cref="HttpClient"/> requests that fail with conditions indicating a transient failure. </returns>
         public static PolicyBuilder<HttpResponseMessage> HandleTransientHttpError()
         {
-            return Policy<HttpResponseMessage>.Handle<HttpRequestException>().OrTransientHttpStatusCode();
+            return Policy<HttpResponseMessage>
+                .Handle<HttpRequestException>()
+                .Or<WebException>()
+                .OrTransientHttpStatusCode();
         }
 
         /// <summary>
