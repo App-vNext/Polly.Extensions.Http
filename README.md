@@ -1,5 +1,8 @@
 # Polly.Extensions.Http
 
+> [!IMPORTANT] 
+> The `Microsoft.Extensions.Http.Polly` is deprecated in favor of the new [Microsoft.Extensions.Http.Resilience](https://www.nuget.org/packages/Microsoft.Extensions.Http.Resilience) package, as [detailed here](https://learn.microsoft.com/dotnet/core/resilience/). This new package is built on top of Polly, and it takes full advantage of the new Polly v8 features.
+
 Polly.Extensions.Http is an extensions package containing opinionated convenience methods for configuring [Polly](https://github.com/App-vNext/Polly) policies to handle transient faults typical of calls through HttpClient.
 
 Polly.Extensions.Http targets .NET Standard 1.1 and .NET Standard 2.0.
